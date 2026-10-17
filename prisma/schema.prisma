@@ -1,0 +1,32 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model MotionCue {
+  id              String   @id @default(cuid())
+  name            String
+  nameZh          String
+  category        String
+  summary         String
+  description     String   @db.Text
+  visualTraits    String[]
+  aiPromptEn      String   @db.Text
+  aiPromptZh      String   @db.Text
+  remotionSnippet String?  @db.Text
+  mathFormula     String?
+  previewType     String   @default("custom")
+  tags            String[]
+  isPreset        Boolean  @default(false)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@index([category])
+  @@index([isPreset])
+  @@map("motion_cues")
+}
