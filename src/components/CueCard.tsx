@@ -44,15 +44,9 @@ export const CueCard: React.FC<Props> = ({ cue, onClick }) => {
           >
             {catInfo.zh}
           </span>
-          {cue.isPreset ? (
-            <span className="text-[10px] font-mono text-neutral-500 bg-neutral-950 px-2 py-0.5 rounded border border-neutral-800">
-              内置
-            </span>
-          ) : (
-            <span className="text-[10px] font-mono text-indigo-400 bg-indigo-950/40 px-2 py-0.5 rounded border border-indigo-800/50">
-              自定义
-            </span>
-          )}
+          <span className="text-[10px] font-mono text-neutral-500 uppercase tracking-wider">
+            {catInfo.en}
+          </span>
         </div>
 
         <div className="mb-2">
@@ -105,22 +99,22 @@ export const CueCard: React.FC<Props> = ({ cue, onClick }) => {
 
         <div className="flex items-center gap-1.5" onClick={(e) => e.stopPropagation()}>
           <button
-            onClick={(e) => handleCopyPrompt(e, cue.aiPromptEn, '英文视频Prompt')}
-            title="复制英文 AI 视频提示词"
+            onClick={(e) => handleCopyPrompt(e, cue.aiPromptEn, '英文 AI 提示词')}
+            title="复制英文 AI 提示词 (Cursor / v0 / Claude)"
             className="p-1.5 rounded-lg bg-neutral-900 hover:bg-neutral-800 text-neutral-400 hover:text-white border border-neutral-800 transition"
           >
-            {copied === '英文视频Prompt' ? (
+            {copied === '英文 AI 提示词' ? (
               <Check className="w-3.5 h-3.5 text-emerald-400" />
             ) : (
               <Sparkles className="w-3.5 h-3.5" />
             )}
           </button>
           <button
-            onClick={(e) => handleCopyPrompt(e, cue.aiPromptZh, 'Remotion指令')}
-            title="复制 Remotion / Cursor 指令"
+            onClick={(e) => handleCopyPrompt(e, cue.aiPromptZh, '中文需求指令')}
+            title="复制中文设计规范与 AI 指令"
             className="p-1.5 rounded-lg bg-neutral-900 hover:bg-neutral-800 text-neutral-400 hover:text-white border border-neutral-800 transition"
           >
-            {copied === 'Remotion指令' ? (
+            {copied === '中文需求指令' ? (
               <Check className="w-3.5 h-3.5 text-emerald-400" />
             ) : (
               <Terminal className="w-3.5 h-3.5" />

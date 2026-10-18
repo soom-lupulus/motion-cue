@@ -10,8 +10,6 @@ import {
   Sparkles,
   Terminal,
   Bookmark,
-  Edit2,
-  Trash2,
   Layers,
   Cpu,
   Share2,
@@ -23,11 +21,9 @@ import { MotionPreviewRenderer } from './previews/MotionPreviews';
 interface Props {
   cue: MotionCue | null;
   onClose: () => void;
-  onEdit?: (cue: MotionCue) => void;
-  onDelete?: (id: string) => void;
 }
 
-export const CueDetailModal: React.FC<Props> = ({ cue, onClose, onEdit, onDelete }) => {
+export const CueDetailModal: React.FC<Props> = ({ cue, onClose }) => {
   const [copiedSection, setCopiedSection] = useState<string | null>(null);
 
   if (!cue) return null;
@@ -70,29 +66,6 @@ export const CueDetailModal: React.FC<Props> = ({ cue, onClose, onEdit, onDelete
           </div>
 
           <div className="flex items-center gap-2">
-            {!cue.isPreset && onEdit && (
-              <button
-                onClick={() => onEdit(cue)}
-                className="p-1.5 rounded-lg text-neutral-400 hover:text-white hover:bg-neutral-800 transition"
-                title="编辑此词条"
-              >
-                <Edit2 className="w-4 h-4" />
-              </button>
-            )}
-            {!cue.isPreset && onDelete && (
-              <button
-                onClick={() => {
-                  if (confirm('确认删除该自定义动效词条？')) {
-                    onDelete(cue.id);
-                    onClose();
-                  }
-                }}
-                className="p-1.5 rounded-lg text-neutral-400 hover:text-rose-400 hover:bg-neutral-800 transition"
-                title="删除词条"
-              >
-                <Trash2 className="w-4 h-4" />
-              </button>
-            )}
             <button
               onClick={onClose}
               className="p-1.5 rounded-lg text-neutral-400 hover:text-white hover:bg-neutral-800 transition"
@@ -148,19 +121,19 @@ export const CueDetailModal: React.FC<Props> = ({ cue, onClose, onEdit, onDelete
 
           {/* AI Prompts Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {/* Video AI Prompt */}
+            {/* English AI Prompt */}
             <div className="rounded-2xl bg-neutral-950 border border-neutral-800/90 p-4 space-y-2.5 flex flex-col justify-between">
               <div>
                 <div className="flex items-center justify-between text-xs font-bold text-neutral-200">
                   <span className="flex items-center gap-1.5 text-amber-400">
                     <Sparkles className="w-4 h-4" />
-                    AI 视频提示词 (Sora / Runway / Kling)
+                    AI 英文提示词 (Cursor / v0 / Claude)
                   </span>
                   <button
-                    onClick={() => copyText(cue.aiPromptEn, '英文视频提示词')}
+                    onClick={() => copyText(cue.aiPromptEn, '英文 AI 提示词')}
                     className="flex items-center gap-1 text-[11px] font-mono text-neutral-400 hover:text-white transition"
                   >
-                    {copiedSection === '英文视频提示词' ? (
+                    {copiedSection === '英文 AI 提示词' ? (
                       <Check className="w-3.5 h-3.5 text-emerald-400" />
                     ) : (
                       <Copy className="w-3.5 h-3.5" />
@@ -173,23 +146,23 @@ export const CueDetailModal: React.FC<Props> = ({ cue, onClose, onEdit, onDelete
                 </div>
               </div>
               <div className="text-[11px] text-neutral-500 font-mono">
-                适合直接填入自然语言视频生成工具
+                标准英文术语与参数体系，极其适合 Cursor / v0 / Claude 快速生成
               </div>
             </div>
 
-            {/* Remotion / Frontend AI Prompt */}
+            {/* Chinese Prompt / Spec */}
             <div className="rounded-2xl bg-neutral-950 border border-neutral-800/90 p-4 space-y-2.5 flex flex-col justify-between">
               <div>
                 <div className="flex items-center justify-between text-xs font-bold text-neutral-200">
                   <span className="flex items-center gap-1.5 text-indigo-400">
                     <Terminal className="w-4 h-4" />
-                    Cursor / Claude 前端动效指令
+                    中文需求与规范指令 (Design Spec & AI)
                   </span>
                   <button
-                    onClick={() => copyText(cue.aiPromptZh, '中文动效指令')}
+                    onClick={() => copyText(cue.aiPromptZh, '中文需求指令')}
                     className="flex items-center gap-1 text-[11px] font-mono text-neutral-400 hover:text-white transition"
                   >
-                    {copiedSection === '中文动效指令' ? (
+                    {copiedSection === '中文需求指令' ? (
                       <Check className="w-3.5 h-3.5 text-emerald-400" />
                     ) : (
                       <Copy className="w-3.5 h-3.5" />
@@ -202,24 +175,24 @@ export const CueDetailModal: React.FC<Props> = ({ cue, onClose, onEdit, onDelete
                 </div>
               </div>
               <div className="text-[11px] text-neutral-500 font-mono">
-                让 AI 编写 Remotion 或 React 动效时的指导命令
+                精准中文需求描述，用于向设计沟通或直接喂给国产 LLM / 提示词助手
               </div>
             </div>
           </div>
 
-          {/* Remotion Code Snippet & Physics Recipe */}
+          {/* Code Snippet & Physics Recipe */}
           {cue.remotionSnippet && (
             <div className="rounded-2xl bg-neutral-950 border border-neutral-800 p-4 space-y-3">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2 text-xs font-bold text-neutral-200">
                   <Code2 className="w-4 h-4 text-cyan-400" />
-                  <span>Remotion 实战代码参考 (Code Recipe)</span>
+                  <span>前端实战代码配方 (React / Tailwind / Framer Motion / Remotion)</span>
                 </div>
                 <button
-                  onClick={() => copyText(cue.remotionSnippet || '', 'Remotion 代码')}
+                  onClick={() => copyText(cue.remotionSnippet || '', '实战代码')}
                   className="flex items-center gap-1 px-2.5 py-1 rounded-lg bg-neutral-900 hover:bg-neutral-800 border border-neutral-700 text-xs font-mono text-neutral-300 transition"
                 >
-                  {copiedSection === 'Remotion 代码' ? (
+                  {copiedSection === '实战代码' ? (
                     <>
                       <Check className="w-3.5 h-3.5 text-emerald-400" />
                       <span className="text-emerald-400">已复制</span>
@@ -235,7 +208,7 @@ export const CueDetailModal: React.FC<Props> = ({ cue, onClose, onEdit, onDelete
 
               {cue.mathFormula && (
                 <div className="text-xs font-mono text-emerald-400 bg-emerald-950/20 px-3 py-1.5 rounded-lg border border-emerald-900/40">
-                  📐 缓动公式: {cue.mathFormula}
+                  📐 参数规范 / 物理配置: {cue.mathFormula}
                 </div>
               )}
 

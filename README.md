@@ -1,33 +1,38 @@
 # Motion Cue ⚡
 
-> **动效与视觉特效（Motion Design & VFX）学术词典 · Remotion AI 提示词规范库**
+> **前端交互设计与动效速查词典 · UI/UX 架构与 AI 提示词规范库**
 
-用自然语言描述动效（Motion Design）和视觉特效（VFX）时，“脑子里有画面但叫不出名字”是开发 Remotion 或类似编程式视频渲染时最普遍的痛点。
+在做前端开发与 UI/UX 设计沟通时，“天天见、脑子里有画面，但一张口就容易词穷”（比如各种 Loading 怎么描述、药丸一样的按钮栏该叫什么、各种整体 UI 风格该怎么精准让 AI 生成）是最普遍的痛点。
 
-**Motion Cue** 专为解决这一痛点而生：将模糊的“动效感觉”，精确转译为行业标准学术名词、物理公式、Remotion 实战代码片段与一键喂给 AI（Cursor / Claude / Sora / Runway）的高质量结构化提示词。
+**Motion Cue** 专为解决这一痛点而生：不再局限于单一的视频渲染，而是覆盖**前端设计的全景维度**。将口语化直觉精准转译为业内标准学术名词、可交互实时预览、现代前端实战代码配方（React / Tailwind / Framer Motion）以及一键喂给 AI（Cursor / v0 / Claude）的高质量结构化提示词。
 
 ---
 
 ## 🌟 核心特性
 
-- 📚 **业内标准名词库**：涵盖 7 大专业分类（物理缓动曲线、动态排版、VFX故障风、剪辑与转场、镜头运镜与视差、交互微动效、粒子光效）。
-- 🎮 **实时交互效果预览**：不仅是静态文字，每个效果均具备基于 Framer Motion / Canvas / WebGL 的实时可交互控件（重放、阻尼调节、光标重力吸附、冲击波等）。
-- 🤖 **AI 动效指令转译器**：口语化输入“文字像果冻晃两下弹出来”，系统自动对齐匹配业内学名，一键生成 Remotion / Framer Motion / 视频生成专用 Prompt。
-- 📐 **Remotion 实战代码配方**：内置 `useCurrentFrame()`、`spring()`、`interpolate()`、`Easing` 完整计算公式，开箱即用。
-- 💾 **灵活双模持久化**：
-  - **零配置模式**：免配数据库，支持本地增删改查与 JSON 完整导入导出，Vercel 一键上线即用。
-  - **云端持久化**：内置 Prisma + PostgreSQL 模型，配置 `DATABASE_URL` 即可多端实时云端同步。
-- 🚀 **Vercel 一键极速部署**：完全兼容 Next.js App Router 与 Vercel 自动化部署。
+- 📚 **9 大独立设计维度**：彻底摒弃复合分类，提炼出 9 个纯粹独立的单项大类：
+  - **导航 (Navigation)**：胶囊栏 (Pill Bar)、分段器 (Segmented Control)、停靠栏 (Dock)、轨道导航 (Rail)、面包屑等。
+  - **容器 (Containers)**：抽屉底板 (Bottom Sheet)、手风琴 (Accordion)、跑马灯 (Marquee)、堆叠卡片 (Stacked Cards) 等。
+  - **控件 (Controls)**：胶囊标签 (Chips)、悬浮动作钮 (FAB)、步进器 (Stepper)、幽灵按钮 (Ghost Button) 等。
+  - **提示 (Feedback)**：吐司 (Toast)、气泡卡片 (Popover)、悬浮注 (Tooltip)、状态徽标 (Badge) 等。
+  - **等待 (Loading)**：骨架微光 (Shimmer)、渐进模糊占位 (Blur-up LQIP)、波浪跳动点 (Typing Dots)、乐观更新幽灵态等。
+  - **动效 (Motion)**：弹性回弹 (Spring Overshoot)、磁吸附 (Magnetic Cursor)、共享元素转场 (Hero) 等。
+  - **材质 (Aesthetics)**：毛玻璃 (Glassmorphism)、流光描边 (Border Beam)、卡片聚光灯 (Spotlight Glow) 等局部材质光影质感。
+  - **横幅 (Banner)**：通告条 (Announcement Bar)、首屏大通栏 (Hero Banner)、轮播画廊 (Carousel Banner)、斜角彩带 (Corner Ribbon) 等。
+  - **风格 (Style)**：整页全局设计风格与规范系统，包括 Linear 极客暗黑全页、新粗野主义整页、Bento 便当盒全景落地页、现代极简企业白昼 (Stripe Light)、极简大字杂志排版、赛博朋克科幻终端、3D 黏土萌系潮玩、90s 复古系统视窗等。每个风格均提供微缩全景网页预览与整页 AI 提示词规范。
+- 🎮 **实时交互效果预览**：每个设计形态均内嵌基于 React 19 + Framer Motion 的实时可交互控件（微缩全景网页交互、点击滑出通告、抽换堆叠卡、滑动胶囊滑块、波浪跳动、磁吸附、弹簧阻尼回弹等）。
+- 📐 **实战代码配方**：内置 Tailwind CSS、Framer Motion、CSS 关键帧及数学参数公式，开箱即用。
+- ⚡ **纯静态极速检索**：0ms 响应，零数据库/零后端开销，离线即用，即开即查。
+- 🚀 **一键极速部署**：完全兼容 Next.js App Router 静态预渲染，可直接部署至 Vercel / GitHub Pages / Cloudflare Pages。
 
 ---
 
 ## 🛠️ 技术栈
 
-- **框架**：Next.js (App Router) + React 19 + TypeScript
+- **框架**：Next.js (App Router, Turbopack) + React 19 + TypeScript
 - **包管理器**：`pnpm`
-- **样式与动效**：Tailwind CSS v4 + Framer Motion + canvas-confetti
+- **样式与动效**：Tailwind CSS + Framer Motion + canvas-confetti
 - **组件与交互**：Lucide Icons + Sonner (Toast)
-- **数据库 ORM**：Prisma Client + PostgreSQL (支持 Docker / Neon / Supabase)
 
 ---
 
@@ -45,50 +50,18 @@ pnpm install
 pnpm dev
 ```
 
-在浏览器打开 [http://localhost:3000](http://localhost:3000) 即可开始浏览与记录。
+在浏览器打开 [http://localhost:3000](http://localhost:3000) 即可开始浏览与复制。
 
 ---
 
-## 🗄️ 数据库配置（可选）
+## ⚡ 纯静态架构与一键部署
 
-### 本地 Docker 数据库（与 yogurt 一致的体验）
-
-项目内置了便捷的一键本地 PostgreSQL 容器启动脚本：
+本项目为 **100% 纯客户端静态站点（Static Site）**，完全零服务器/零数据库依赖：
+- **极速响应**：所有 9 大维度共 34 个经典词条及交互动效组件均打包在客户端，搜索、筛选与代码生成 0ms 响应。
+- **开箱即用**：专为开发者查阅与一键生成高质量 AI Prompt（Cursor / Claude / v0）打造。
+- **一键托管部署**：支持直接构建静态产物，一键部署到 Vercel、GitHub Pages 或 Cloudflare Pages，永久免费零维护。
 
 ```bash
-# 启动本地 PostgreSQL 容器
-./start-database.sh
-
-# 运行数据库迁移
-pnpm exec prisma db push
+# 构建生产环境静态资源
+pnpm build
 ```
-
-### 云端数据库（Neon / Supabase / Vercel Postgres）
-
-在 `.env` 或 Vercel 环境变量中配置：
-
-```env
-DATABASE_URL="postgresql://user:password@your-postgres-host:5432/motion-cue"
-```
-
-> **提示**：未配置 `DATABASE_URL` 时，项目将自动以本地增强模式运行，内置全部动效预设，并支持本地增删改查与 JSON 导出导入，完全不影响 Vercel 部署与日常查阅！
-
----
-
-## 🚢 Vercel 快速部署
-
-1. 将代码推送到 GitHub 仓库：
-   ```bash
-   git add .
-   git commit -m "feat: init motion-cue"
-   git push origin main
-   ```
-2. 在 Vercel 控制台点击 **Import Project**，选择该仓库。
-3. Framework Preset 选择 **Next.js**，包管理器识别为 `pnpm`。
-4. （可选）配置 `DATABASE_URL` 环境变量；不配置也可直接点击 **Deploy** 零配置上线！
-
----
-
-## 📄 许可证
-
-MIT License
